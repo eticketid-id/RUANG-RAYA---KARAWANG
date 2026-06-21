@@ -2,71 +2,720 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Tiket</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RUANG RAYA - KARAWANG</title>
+
 <style>
-body{margin:0;font-family:Arial,sans-serif;background:#f5f6f8}
-.banner{height:260px;background:url('banner.png') center/cover no-repeat}
-.container{max-width:1100px;margin:auto;padding:15px}
-.card{background:#fff;border-radius:24px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.1)}
-.card:before,.card:after{content:'';position:absolute;width:30px;height:30px;border-radius:50%;background:#f5f6f8;top:55%}
-.card:before{left:-15px}.card:after{right:-15px}
-.perf{border-top:2px dashed #ddd;margin:15px 0}
-.badge{display:inline-block;background:#ff3b30;color:#fff;padding:8px 12px;border-radius:999px;animation:pulse 1s infinite}
-@keyframes pulse{50%{transform:scale(1.08)}}
-.footer{position:sticky;bottom:0;background:#fff;padding:15px;display:flex;justify-content:space-between;align-items:center}
-button{background:#0d63ff;color:#fff;border:none;padding:15px 24px;border-radius:14px;cursor:pointer;animation:float 2s infinite}
-@keyframes float{50%{transform:translateY(-4px)}}
-.ticket-subtitle{
-    font-size:12px;
-    color:#777;
-    font-weight:600;
-    margin-top:4px;
+
+:root{
+--primary:#0f4c81;
+--border:#e5e7eb;
+--text:#111827;
+--muted:#6b7280;
+--bg:#f5f7fb;
+--shadow:0 8px 30px rgba(0,0,0,.08);
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+body{
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+background:var(--bg);
+color:var(--text);
+padding-bottom:110px;
+}
+
+img{
+max-width:100%;
+display:block;
+}
+
+a{
+text-decoration:none;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+}
+
+/* HEADER */
+
+.header{
+background:#fff;
+padding:18px 16px;
+box-shadow:0 2px 10px rgba(0,0,0,.04);
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.header-inner{
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.logo{
+height:38px;
+object-fit:contain;
+}
+
+/* STEP */
+
+.step-wrap{
+background:#fff;
+padding:18px 12px;
+border-top:1px solid #f1f1f1;
+}
+
+.steps{
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.step{
+display:flex;
+align-items:center;
+}
+
+.circle{
+width:36px;
+height:36px;
+border-radius:50%;
+border:2px solid #cfd7e3;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:700;
+font-size:14px;
+background:#fff;
+color:#7a869a;
+}
+
+.circle.active{
+border-color:#0d6efd;
+color:#0d6efd;
+}
+
+.line{
+width:48px;
+height:2px;
+background:#d8dde7;
+}
+
+.step-label{
+text-align:center;
+font-size:13px;
+font-weight:600;
+margin-top:10px;
+color:#344054;
+}
+
+/* HERO */
+
+.hero{
+background:#fff;
+overflow:hidden;
+}
+
+.hero img{
+width:100%;
+display:block;
+}
+
+/* EVENT */
+
+.event-box{
+background:#fff;
+padding:26px 20px;
+text-align:center;
+border-bottom:1px solid #eef1f4;
+}
+
+.event-box h1{
+font-size:30px;
+font-weight:800;
+letter-spacing:.5px;
+color:#143d7a;
+}
+
+/* SECTION */
+
+.section{
+padding:20px;
+}
+
+.section-title{
+font-size:15px;
+font-weight:700;
+letter-spacing:.8px;
+color:#143d7a;
+margin-bottom:15px;
+}
+
+/* TICKET */
+
+.ticket-card{
+background:#fff;
+border-radius:18px;
+box-shadow:var(--shadow);
+overflow:hidden;
+transition:.3s;
+}
+
+.ticket-card:hover{
+transform:translateY(-2px);
+}
+
+.ticket-body{
+padding:24px;
+}
+
+.ticket-name{
+font-size:28px;
+font-weight:800;
+line-height:1.2;
+margin-bottom:8px;
+}
+
+.ticket-sub{
+font-size:14px;
+color:var(--muted);
+margin-bottom:18px;
+font-weight:500;
+}
+
+.ticket-info{
+list-style:none;
+}
+
+.ticket-info li{
+position:relative;
+padding-left:18px;
+margin-bottom:12px;
+line-height:1.5;
+font-size:15px;
+color:#374151;
+}
+
+.ticket-info li::before{
+content:"•";
+position:absolute;
+left:0;
+top:0;
+font-weight:bold;
+}
+
+.ticket-divider{
+height:1px;
+background:#eceff3;
+margin:20px 0;
+}
+
+.ticket-footer{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+flex-wrap:wrap;
+}
+
+.price-wrap{
+display:flex;
+flex-direction:column;
+}
+
+.price{
+font-size:36px;
+font-weight:800;
+color:#111827;
+}
+
+.price small{
+font-size:13px;
+color:#6b7280;
+font-weight:600;
+}
+
+.qty{
+min-width:130px;
+}
+
+.qty select{
+width:100%;
+height:50px;
+border:2px solid #e5e7eb;
+border-radius:14px;
+padding:0 15px;
+font-size:16px;
+font-weight:700;
+outline:none;
+background:#fff;
+cursor:pointer;
+}
+
+.fade{
+animation:fade .6s ease;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(15px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@media(max-width:600px){
+
+.event-box h1{
+font-size:20px;
+}
+
+.ticket-name{
+font-size:22px;
+}
+
+.price{
+font-size:28px;
+}
+
+.line{
+width:28px;
+}
+
 }
 
 </style>
 </head>
+
 <body>
-<div class="banner">
-<img src="banner.png" alt="Ruang Raya">
-</div>
+
+<div class="header">
 <div class="container">
-<h2>RUANG RAYA - KARAWANG</h2>
-<div class="card">
-<div style="padding:20px">
-<span class="badge">Tiket Hampir Habis</span>
-<h3>EARLY BIRD - VIP Festival</h3>
-<div class="ticket-subtitle">TIKET TAMBAHAN</div>
-<p>Harga: Rp 290.000</p>
-<div class="perf"></div>
-<select id="qty">
-<option>0</option><option>1</option><option>2</option><option>3</option>
-<option>4</option><option>5</option><option>6</option><option>7</option>
+<div class="header-inner">
+
+<img src="logo.png" class="logo">
+
+</div>
+</div>
+</div>
+
+<div class="step-wrap">
+
+<div class="steps">
+
+<div class="step">
+<div class="circle active">1</div>
+</div>
+
+<div class="line"></div>
+
+<div class="step">
+<div class="circle">2</div>
+</div>
+
+<div class="line"></div>
+
+<div class="step">
+<div class="circle">3</div>
+</div>
+
+<div class="line"></div>
+
+<div class="step">
+<div class="circle">4</div>
+</div>
+
+</div>
+
+<div class="step-label">
+Pilih Kategori
+</div>
+
+</div>
+
+<div class="hero fade">
+<img src="banner.png">
+</div>
+
+<div class="event-box fade">
+<h1>RUANG RAYA - KARAWANG</h1>
+</div>
+
+<div class="container">
+
+<div class="section">
+
+<div class="section-title">
+ONLINE SALES
+</div>
+
+<div class="ticket-card fade">
+
+<div class="ticket-body">
+
+<div class="ticket-name">
+EARLY BIRD - VIP FESTIVAL
+</div>
+
+<div class="ticket-sub">
+TIKET TAMBAHAN
+</div>
+
+<ul class="ticket-info">
+
+<li>Harga belum termasuk pajak dan biaya platform</li>
+
+<li>Tiket berlaku untuk satu orang pengunjung</li>
+
+<li>Wajib menunjukkan e-ticket saat masuk area event</li>
+
+<li>Tiket yang sudah dibeli tidak dapat dikembalikan</li>
+
+</ul>
+
+<div class="ticket-divider"></div>
+
+<div class="ticket-footer">
+
+<div class="price-wrap">
+<div class="price">
+Rp 290.000
+</div>
+<small>Per tiket</small>
+</div>
+
+<div class="qty">
+
+<select id="qty" onchange="updateTotal()">
+<option value="0">0 Tiket</option>
+<option value="1">1 Tiket</option>
+<option value="2">2 Tiket</option>
+<option value="3">3 Tiket</option>
+<option value="4">4 Tiket</option>
+<option value="5">5 Tiket</option>
+<option value="6">6 Tiket</option>
+<option value="7">7 Tiket</option>
+<option value="8">8 Tiket</option>
+<option value="9">9 Tiket</option>
+<option value="10">10 Tiket</option>
 </select>
-<h3 id="total">Rp 0</h3>
+
+</div>
+
+</div>
+
 </div>
 </div>
 </div>
-<div class="footer">
-<div>Jumlah: <span id="jml">0</span></div>
-<button onclick="pesan()">Pesan Sekarang</button>
+
+<!-- PAYMENT -->
+
+<div class="section">
+
+<div class="section-title">
+METODE PEMBAYARAN
 </div>
+
+<div class="ticket-card">
+
+<div class="ticket-body">
+
+<div class="payment-grid">
+
+<div class="pay">BCA</div>
+<div class="pay">BNI</div>
+<div class="pay">BRI</div>
+<div class="pay">MANDIRI</div>
+
+<div class="pay">QRIS</div>
+<div class="pay">DANA</div>
+<div class="pay">GOPAY</div>
+<div class="pay">OVO</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+<style>
+
+.payment-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+}
+
+.pay{
+height:60px;
+border:1px solid #e5e7eb;
+border-radius:14px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:800;
+font-size:14px;
+background:#fff;
+transition:.25s;
+cursor:pointer;
+}
+
+.pay:hover{
+transform:translateY(-2px);
+box-shadow:0 6px 20px rgba(0,0,0,.08);
+}
+
+@media(max-width:600px){
+
+.payment-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+</style>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+<div class="footer-inner">
+
+<img src="logo.png" class="footer-logo">
+
+<div class="footer-text">
+Platform penjualan tiket event digital.
+</div>
+
+<div class="footer-copy">
+© 2026 LOKET. All Rights Reserved.
+</div>
+
+</div>
+
+</footer>
+
+<style>
+
+.footer{
+background:#fff;
+margin-top:30px;
+padding:35px 20px 120px;
+border-top:1px solid #eceff3;
+}
+
+.footer-inner{
+max-width:900px;
+margin:auto;
+text-align:center;
+}
+
+.footer-logo{
+height:40px;
+margin:auto;
+margin-bottom:15px;
+}
+
+.footer-text{
+font-size:14px;
+color:#667085;
+margin-bottom:8px;
+}
+
+.footer-copy{
+font-size:13px;
+color:#98a2b3;
+}
+
+</style>
+
+<!-- STICKY BAR -->
+
+<div class="sticky-bar">
+
+<div class="sticky-left">
+
+<div id="jumlahTicket" class="sticky-label">
+Jumlah (0 tiket)
+</div>
+
+<div id="totalHarga" class="sticky-price">
+Rp 0
+</div>
+
+</div>
+
+<button class="pesan-btn" onclick="pesanSekarang()">
+Pesan Sekarang
+</button>
+
+</div>
+
+<style>
+
+.sticky-bar{
+position:fixed;
+left:0;
+right:0;
+bottom:0;
+background:#fff;
+padding:14px 16px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+box-shadow:0 -8px 30px rgba(0,0,0,.12);
+z-index:9999;
+backdrop-filter:blur(20px);
+}
+
+.sticky-left{
+display:flex;
+flex-direction:column;
+}
+
+.sticky-label{
+font-size:13px;
+font-weight:600;
+color:#667085;
+}
+
+.sticky-price{
+font-size:24px;
+font-weight:800;
+color:#111827;
+margin-top:3px;
+}
+
+.pesan-btn{
+border:none;
+cursor:pointer;
+height:56px;
+padding:0 28px;
+border-radius:18px;
+font-size:15px;
+font-weight:800;
+color:#fff;
+
+background:linear-gradient(
+135deg,
+#0f4c81,
+#0d6efd
+);
+
+box-shadow:
+0 10px 25px rgba(13,110,253,.35);
+
+transition:.25s;
+}
+
+.pesan-btn:hover{
+transform:translateY(-2px);
+}
+
+.pesan-btn:active{
+transform:scale(.97);
+}
+
+@media(max-width:600px){
+
+.pesan-btn{
+height:52px;
+padding:0 20px;
+font-size:14px;
+}
+
+.sticky-price{
+font-size:20px;
+}
+
+}
+
+</style>
+
 <script>
-const harga=290000;
-qty.onchange=function(){
- let q=parseInt(this.value);
- jml.innerText=q;
- total.innerText='Rp '+(q*harga).toLocaleString('id-ID');
+
+const HARGA = 290000;
+
+function updateTotal(){
+
+const qty =
+parseInt(
+document.getElementById("qty").value
+);
+
+const total =
+qty * HARGA;
+
+document.getElementById(
+"jumlahTicket"
+).innerHTML =
+"Jumlah (" + qty + " tiket)";
+
+document.getElementById(
+"totalHarga"
+).innerHTML =
+"Rp " +
+total.toLocaleString("id-ID");
+
 }
-function pesan(){
- let q=parseInt(qty.value);
- if(q<1){alert('Pilih tiket');return;}
- localStorage.setItem('jenis_tiket','ADDITIONAL - VIP');
- localStorage.setItem('jumlah_item',q);
- localStorage.setItem('total',q*harga);
- document.body.insertAdjacentHTML('beforeend','<div style="position:fixed;inset:0;background:#fff;display:flex;justify-content:center;align-items:center;font-size:22px">Memproses...</div>');
- setTimeout(()=>location.href='form.html',2000);
+
+function pesanSekarang(){
+
+const qty =
+parseInt(
+document.getElementById("qty").value
+);
+
+if(qty < 1){
+
+alert(
+"Silakan pilih jumlah tiket terlebih dahulu."
+);
+
+return;
+
 }
+
+window.location.href =
+"form.htm";
+
+}
+
+window.addEventListener(
+"load",
+function(){
+
+document.body.style.opacity="0";
+
+setTimeout(function(){
+
+document.body.style.transition=
+".4s ease";
+
+document.body.style.opacity="1";
+
+},100);
+
+}
+);
+
 </script>
+
 </body>
 </html>
