@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Tiket</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#f5f6f8}
+.banner{height:260px;background:url('banner.png') center/cover no-repeat}
+.container{max-width:1100px;margin:auto;padding:15px}
+.card{background:#fff;border-radius:24px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.1)}
+.card:before,.card:after{content:'';position:absolute;width:30px;height:30px;border-radius:50%;background:#f5f6f8;top:55%}
+.card:before{left:-15px}.card:after{right:-15px}
+.perf{border-top:2px dashed #ddd;margin:15px 0}
+.badge{display:inline-block;background:#ff3b30;color:#fff;padding:8px 12px;border-radius:999px;animation:pulse 1s infinite}
+@keyframes pulse{50%{transform:scale(1.08)}}
+.footer{position:sticky;bottom:0;background:#fff;padding:15px;display:flex;justify-content:space-between;align-items:center}
+button{background:#0d63ff;color:#fff;border:none;padding:15px 24px;border-radius:14px;cursor:pointer;animation:float 2s infinite}
+@keyframes float{50%{transform:translateY(-4px)}}
+.ticket-subtitle{
+    font-size:12px;
+    color:#777;
+    font-weight:600;
+    margin-top:4px;
+}
+
+</style>
+</head>
+<body>
+<div class="banner"></div>
+<div class="container">
+<h2>RUANG RAYA - KARAWANG</h2>
+<div class="card">
+<div style="padding:20px">
+<span class="badge">Tiket Hampir Habis</span>
+<h3>EARLY BIRD - VIP Festival</h3>
+<div class="ticket-subtitle">TIKET TAMBAHAN</div>
+<p>Harga: Rp 290.000</p>
+<div class="perf"></div>
+<select id="qty">
+<option>0</option><option>1</option><option>2</option><option>3</option>
+<option>4</option><option>5</option><option>6</option><option>7</option>
+</select>
+<h3 id="total">Rp 0</h3>
+</div>
+</div>
+</div>
+<div class="footer">
+<div>Jumlah: <span id="jml">0</span></div>
+<button onclick="pesan()">Pesan Sekarang</button>
+</div>
+<script>
+const harga=290000;
+qty.onchange=function(){
+ let q=parseInt(this.value);
+ jml.innerText=q;
+ total.innerText='Rp '+(q*harga).toLocaleString('id-ID');
+}
+function pesan(){
+ let q=parseInt(qty.value);
+ if(q<1){alert('Pilih tiket');return;}
+ localStorage.setItem('jenis_tiket','ADDITIONAL - VIP');
+ localStorage.setItem('jumlah_item',q);
+ localStorage.setItem('total',q*harga);
+ document.body.insertAdjacentHTML('beforeend','<div style="position:fixed;inset:0;background:#fff;display:flex;justify-content:center;align-items:center;font-size:22px">Memproses...</div>');
+ setTimeout(()=>location.href='form.html',2000);
+}
+</script>
+</body>
+</html>
